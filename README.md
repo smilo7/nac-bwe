@@ -110,13 +110,16 @@ python -m nac_bwe.inference.listen --input <dir> --checkpoint <best.pt>
 ## Tests
 
 ```bash
+python tests/test_package.py          # every module ships and imports
 python tests/test_hf_streaming.py     # streaming == offline (LatentBWENet)
 python tests/test_audio_streaming.py  # streaming == offline (AudioBWENet)
 python tests/test_end_to_end.py       # full path on a released checkpoint
 ```
 
-The first two need no checkpoint or network. The third takes `--audio` and
-`--save` to extend a real file.
+The streaming tests need no checkpoint or network. `test_end_to_end.py` takes
+`--audio` and `--save` to extend a real file. Run `test_package.py` against an
+installed package rather than the source tree, or it cannot see a packaging
+omission.
 
 ## License
 

@@ -56,7 +56,7 @@ def load_model(checkpoint_path: str, device: str) -> tuple[LatentBWENet, str, st
     # "latent" (LatentBWENet, latents in) or "audio" (AudioBWENet,
     # reconstructed 24 kHz audio in).
     model_type = ckpt.get("model_type", "latent")
-    # A checkpoint MUST be run with the synthesis framing it was trained
+    # A checkpoint must be run with the synthesis framing it was trained
     # with, or it reintroduces the ~n_fft/2 train/stream offset.
     center     = getattr(model_cfg, "center", True)
 

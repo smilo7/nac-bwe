@@ -46,7 +46,7 @@ def spectral_highpass(
     bit-for-bit identical to the model's. This avoids the soft-biquad vs sharp-
     brickwall mismatch that piles energy up at the 12 kHz crossover.
 
-    `center` MUST match the model's synthesis `center` (LatentBWENet.center /
+    `center` must match the model's synthesis `center` (LatentBWENet.center /
     the audio model). Otherwise target and output are framed differently and
     the supervision misaligns by ~n_fft/2 samples.
 

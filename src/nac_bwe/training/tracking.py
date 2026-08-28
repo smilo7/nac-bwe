@@ -51,7 +51,7 @@ class ExperimentTracker:
         config + ``config_snapshot.json`` next to the CSV).
     resume
         When True, existing ``metrics.csv`` rows are kept and the same W&B run
-        is resumed, so a requeued job appends rather than forks.
+        is resumed, so a re-run appends rather than forks.
     """
 
     def __init__(
@@ -111,7 +111,7 @@ class ExperimentTracker:
                 entity=cfg.entity,
                 name=run_name,
                 id=run_id,
-                mode=self._mode,             # env-overridable; "offline" on HPC
+                mode=self._mode,             # env-overridable
                 group=cfg.group,             # groups an ablation sweep's runs
                 tags=list(cfg.tags),
                 dir=str(self.out_dir),

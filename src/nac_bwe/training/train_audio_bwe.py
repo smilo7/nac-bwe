@@ -8,7 +8,7 @@ input mode ("audio" rather than a latent mode). Run it on the same precomputed
 dataset as the latent model so both train on identical chunks.
 
 Usage:
-    python -u -m nac_bwe.training.train_audio_bwe --config configs/train/train_audio_small.yaml
+    python -u -m nac_bwe.training.train_audio_bwe --config configs/train/headline/audio_small_gan.yaml
 """
 
 import argparse
@@ -51,16 +51,16 @@ def main():
     parser.add_argument(
         "--auto-resume", action="store_true",
         help="Resume from the latest epoch_*.pt in output_dir if one exists, "
-             "otherwise start fresh. Safe to always pass on HPC: a resubmitted "
-             "job continues, a first submission starts from scratch.",
+             "otherwise start fresh. Safe to always pass in a batch job: a "
+             "re-run continues, a first run starts from scratch.",
     )
     parser.add_argument(
         "--init-generator", type=str, default=None,
-        help="Warm-start the generator's WEIGHTS from another run's checkpoint "
+        help="Warm-start the generator's weights from another run's checkpoint "
              "(two-stage training: reconstruction pretrain -> adversarial "
              "fine-tune). Optimiser, scheduler, epoch counter and discriminator "
              "all start fresh. Ignored once this run has its own checkpoint, so "
-             "it composes with --auto-resume on HPC.",
+             "it composes with --auto-resume.",
     )
     args = parser.parse_args()
 
@@ -164,7 +164,7 @@ def main():
     best_val_g = float("inf")
     start_epoch = 1
 
-    # Warm start only when this run has no checkpoint of its own: on a requeue
+    # Warm start only when this run has no checkpoint of its own: on a re-run
     # --auto-resume must win, or the job would silently restart stage 2 from
     # stage 1 and throw away the fine-tuning done so far.
     if args.init_generator and resume_path is None:

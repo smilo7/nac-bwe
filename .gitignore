@@ -1,9 +1,9 @@
 .venv/
 __pycache__/
 *.egg-info/
-build/
-dist/
+/build/
+/dist/
 
-runs/
-data/
-wandb/
+/runs/
+/data/
+/wandb/

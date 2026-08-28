@@ -25,7 +25,7 @@ dependencies = [
     "torchcodec==0.9.1",
     "tqdm>=4.67.3",
     "transformers>=5.5.4",
-    "vocos[train]>=0.1.0",
+    "vocos>=0.1.0",              # base package only; [train] pulls a broken fairseq build
     "wandb>=0.26.0",
 ]
 
